@@ -1,0 +1,131 @@
+[
+  {
+    "id":1,
+    "goods_name":"百草味 杨梅干 100g",
+    "imgSrc":"../../../static/img/goods01.jpg",
+    "goods_price": "19.9",
+    "count":"1",
+    "cost":"21.8"
+  },
+  {
+    "id":2,
+    "goods_name":"奥利奥 mini小饼干 55g，原价5.9元，现价5.9元。",
+    "imgSrc":"../../../static/img/goods02.jpg",
+    "goods_price": "5.9",
+    "count":"1",
+    "cost":"7.8"
+  },
+  {
+    "id":3,
+    "goods_name":"上好佳 鲜虾条 200g",
+    "imgSrc":"../../../static/img/goods03.jpg",
+    "goods_price": "4.9",
+    "count":"1",
+    "cost":"5.8"
+  },
+  {
+    "id":4,
+    "goods_name":"上好佳 草莓口味粟米条 40g，原价4.9元，现价4.9元。",
+    "imgSrc":"../../../static/img/goods04.jpg",
+    "goods_price": "4.9",
+    "count":"1"
+  },
+  {
+    "id":5,
+    "goods_name":"盼盼 番茄味薯片 118g",
+    "imgSrc":"../../../static/img/goods05.jpg",
+    "goods_price": "4.2",
+    "count":"1"
+  },
+  {
+    "id":6,
+    "goods_name":"海底捞番茄牛腩自煮火锅套餐",
+    "imgSrc":"../../../static/img/goods06.jpg",
+    "goods_price": "45",
+    "count":"1"
+  },
+  {
+    "id":7,
+    "goods_name":"乐事 薯片美国经典原味40g 40克",
+    "imgSrc":"../../../static/img/goods07.jpg",
+    "goods_price": "4.5",
+    "count":"1"
+  },
+  {
+    "id":8,
+    "goods_name":"百草味麻辣牛肉(100g)",
+    "imgSrc":"../../../static/img/goods08.jpg",
+    "goods_price": "15",
+    "count":"1"
+  },
+  {
+    "id":9,
+    "goods_name":"百草味麻辣豆皮",
+    "imgSrc":"../../../static/img/goods09.jpg",
+    "goods_price": "6.5",
+    "count":"1"
+  },
+  {
+    "id":10,
+    "goods_name":"百草味肉松饼(260g)",
+    "imgSrc":"../../../static/img/goods10.jpg",
+    "goods_price": "12",
+    "count":"1"
+  },
+  {
+    "id":11,
+    "goods_name":"百草味 笑口板栗 即食香糯 带壳熟栗子零食特产甘栗 板栗/袋 120g",
+    "imgSrc":"../../../static/img/goods11.jpg",
+    "goods_price": "8.5",
+    "count":"1"
+  },
+  {
+    "id":12,
+    "goods_name":"百草味 香辣猪肉条 100g",
+    "imgSrc":"../../../static/img/goods12.jpg",
+    "goods_price": "15",
+    "count":"1"
+  },
+  {
+    "id":13,
+    "goods_name":"60克好丽友果滋果姿葡萄味",
+    "imgSrc":"../../../static/img/goods13.jpg",
+    "goods_price": "4.5",
+    "count":"1"
+  },
+  {
+    "id":14,
+    "goods_name":"果滋果姿",
+    "imgSrc":"../../../static/img/goods14.jpg",
+    "goods_price": "4.5",
+    "count":"1"
+  },
+  {
+    "id":15,
+    "goods_name":"新农哥巴旦木海苔脆",
+    "imgSrc":"../../../static/img/goods15.jpg",
+    "goods_price": "12",
+    "count":"1"
+  },
+  {
+    "id":16,
+    "goods_name":"三只松鼠缤纷什锦豆",
+    "imgSrc":"../../../static/img/goods16.jpg",
+    "goods_price": "6.5",
+    "count":"1"
+  },
+  {
+    "id":17,
+    "goods_name":"65g乐事小怪兽榴莲味",
+    "imgSrc":"../../../static/img/goods17.jpg",
+    "goods_price": "7",
+    "count":"1"
+  },
+  {
+    "id":18,
+    "goods_name":"三只松鼠兰花豆205g",
+    "imgSrc":"../../../static/img/goods18.jpg",
+    "goods_price": "6.5",
+    "count":"1"
+  }
+]
