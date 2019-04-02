@@ -7,7 +7,7 @@
                                 <div class="pic" @mouseenter="enter" @mouseleave="out">
                                    <img :src="src" alt=''>
                                    <div class="click" v-if="ck">点击更换</div>
-                                   <input type="file" class="edit" v-show="ed" @click="getFile" >
+                                   <input type="file" class="edit" v-show="ed" @change="getFile" >
                                 </div> 
                                 <div class="name">
                                      <p>你好,<span class="username">{{username}}</span></p>
@@ -34,44 +34,30 @@
                         </div>
                          <div class="hot-list">
                             <ul>
-                                    <li v-for="(item, index) in promotion" :key=index>
+                                    <router-link tag="li" :to="'/rank/'+item.Title"
+                                     v-for="(item, index) in hot_list" :key=index>
                                         <a href="#">
-                                            <p class="pic"><img :src="item.src" alt=""></p>
-                                            <p class="title">{{item.title}}</p>
+                                            <p class="pic"><img :src="item.Src" alt=""></p>
+                                            <p class="title">{{item.Title}}</p>
                                             <p class="del">...</p>
-                                            <!-- <p class="price">
-                                                <span class="present-price">{{item.present_price}}</span>
-                                                <span class="cost-price">{{item.cost_price}}</span>
-                                            </p> -->
+                                            <p class="price">
+                                                <span class="present-price">{{item.PresentPrice}}</span>
+                                                <span class="cost-price">{{item.CostPrice}}</span>
+                                            </p>
                                         </a>    
-                                    </li>
+                                    </router-link>
                             </ul>
                         </div>
                            
                     </div>
 
-                     <div class="track">
+                    <!-- <div class="track">
                         <div class='track-wrap'>
                             <h3 class='recommend'>为我推荐</h3>
                             <h3 class="more">更多推荐 >></h3>
                         </div>
-                         <div class="hot-list">
-                            <ul>
-                                    <li v-for="(item, index) in promotion" :key=index>
-                                        <a href="#">
-                                            <p class="pic"><img :src="item.src" alt=""></p>
-                                            <p class="title">{{item.title}}</p>
-                                            <!-- <p class="del">...</p> -->
-                                            <!-- <p class="price">
-                                                <span class="present-price">{{item.present_price}}</span>
-                                                <span class="cost-price">{{item.cost_price}}</span>
-                                            </p> -->
-                                        </a>    
-                                    </li>
-                            </ul>
-                        </div>
-                           
-                    </div>
+                       
+                    </div> -->
         </div>
 </template>
 <script>
@@ -84,7 +70,17 @@ export default {
              ck:0,
 
              src:'',
-             username:''
+             username:'',
+
+             hot_list:[{Title:'趣味汉字',PresentPrice:18.99,CostPrice:'16.6',Src:'../../static/img/hot-list1.jpg'},
+                {Title:'成功父母的七个秘诀',PresentPrice:23.87,CostPrice:'21.5',Src:'../../static/img/hot-list2.jpg'},     
+                {Title:'打开心灵：走进男孩真实的内心世界',PresentPrice:22.23,CostPrice:'19.6',Src:'../../static/img/hot-list3.jpg'},
+                {Title:'天上人间：中国星座的故事',PresentPrice:25.89,CostPrice:'24.8',Src:'../../static/img/hot-list4.jpg'},
+                {Title:'那个骑轮箱来的蜜儿',PresentPrice:15.65,CostPrice:'13.6',Src:'../../static/img/hot-list5.jpg'},
+                {Title:'新手父母1日1教-3岁',PresentPrice:19.99,CostPrice:'18.8',Src:'../../static/img/hot-list6.jpg'},
+                {Title:'环游地球八十天',PresentPrice:16.91,CostPrice:'15.9',Src:'../../static/img/hot-list7.jpg'},
+                {Title:'我的野生动物朋友',PresentPrice:31.98,CostPrice:'29.9',Src:'../../static/img/hot-list8.jpg'}
+            ],
         }
     },
         mounted(){
@@ -243,12 +239,13 @@ export default {
                                 position: relative;
                                 line-height: 1.5;
                                 float: left;
+                                height: 260px;
                                 width: 160px;
                                 border: #e3e7ee solid 1px;
                                 margin: 10px;
-                                padding: 0 10px;
+                                padding: 30px 10px 0px;
                                 img{
-                                    width: 100%;
+                                    width: 80%;
                                 }
                                 .price{
                                     .present-price{
@@ -265,6 +262,11 @@ export default {
                                     right:10px;
                                     color: rgb(139, 134, 134);
                                     font-size: 28px;
+                                }
+                                .title{
+                                    white-space: nowrap;
+                                    overflow:inherit;
+                                    line-height: 2.5;
                                 }
                             }
                     }

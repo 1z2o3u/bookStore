@@ -14,11 +14,15 @@ import Data from '@/components/my/Data'
 import Address from '@/components/my/Address'
 import Order from '@/components/my/Order'
 import Detail from '@/components/Detail'
+import Rank from '@/components/Rank'
 import Hello from '@/components/HelloWorld'
 import Favorites from '@/components/Favorites'
 import Index from '@/components/Index'
 import Search from '@/components/home/Search'
 import Car from '@/components/Car'
+import Subject from '@/components/classify/Subject'
+
+
 
 import AdminHome from '@/components/back/Home'
 import AdminAdd from '@/components/back/Add'
@@ -109,6 +113,19 @@ export default new Router({
       path: '/detail/:id',
       name: 'Detail',
       component: Detail
+    },
+
+    {
+      path: '/subject/:id',
+      name: 'Subject',
+      component: Subject
+    },
+
+    // 分类
+    {
+      path: '/rank/:id',
+      name: 'Rank',
+      component: Rank
     },
 
     {

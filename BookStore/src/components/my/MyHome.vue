@@ -47,12 +47,12 @@
                             </router-link>
                            
                         </dt>
-                        <dt>
+                        <!-- <dt>
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-rmb"></use>
                             </svg>
                             我的资产
-                        </dt>
+                        </dt> -->
                         <dd>
                             <router-link to='/my/ticket'>卡券</router-link>
                         </dd>
@@ -71,14 +71,16 @@
                         <dd> <router-link to='/my/data'>个人资料</router-link></dd>
                         <dd> <router-link to='/my/address'>我的地址</router-link></dd>
                          <dt>
-                            <svg class="icon" aria-hidden="true">
-                                <use xlink:href="#icon-dingdan2"></use>
-                            </svg>
-                             我的订单
+                            <router-link to='/my/order'>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-dingdan2"></use>
+                                </svg>
+                                我的订单
+                            </router-link>    
                          </dt>
-                        <dd> <router-link to='/my/order'>交易成功</router-link></dd>
+                        <!-- <dd> <router-link to='/my/order'>交易成功</router-link></dd>
                         <dd> <router-link to='/my/order'>待付款</router-link></dd>
-                        <dd> <router-link to='/my/order'>已失效</router-link> </dd>
+                        <dd> <router-link to='/my/order'>已失效</router-link> </dd> -->
                     </dl>
                 </div>
                 <router-view></router-view>

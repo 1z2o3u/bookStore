@@ -127,22 +127,28 @@ export default {
              promotion:[],
              big_show:0,
              mask_show:0,
-             username:''
+             username:'',
+            hot_list:[{Title:'趣味汉字',PresentPrice:18.99,CostPrice:'16.6',Src:'../../static/img/hot-list1.jpg'},
+                {Title:'成功父母的七个秘诀',PresentPrice:23.87,CostPrice:'21.5',Src:'../../static/img/hot-list2.jpg'},     
+                {Title:'打开心灵：走进男孩真实的内心世界',PresentPrice:22.23,CostPrice:'19.6',Src:'../../static/img/hot-list3.jpg'},
+                {Title:'天上人间：中国星座的故事',PresentPrice:25.89,CostPrice:'24.8',Src:'../../static/img/hot-list4.jpg'},
+                {Title:'那个骑轮箱来的蜜儿',PresentPrice:15.65,CostPrice:'13.6',Src:'../../static/img/hot-list5.jpg'},
+                {Title:'新手父母1日1教-3岁',PresentPrice:19.99,CostPrice:'18.8',Src:'../../static/img/hot-list6.jpg'},
+                {Title:'环游地球八十天',PresentPrice:16.91,CostPrice:'15.9',Src:'../../static/img/hot-list7.jpg'},
+                {Title:'我的野生动物朋友',PresentPrice:31.98,CostPrice:'29.9',Src:'../../static/img/hot-list8.jpg'}
+            ],
         }
     },
         mounted(){
-            this.$axios.post( 'http://localhost:3000/bookList',{},{}).then(
-            (res) => {
                 var id=this.$route.params.id
                 var result=[]
-                result=res.data.result
+                result=this.hot_list
                 for(var i=0;i<result.length;i++){
-                    if(result[i].BookID==id){
+                    if(result[i].Title==id){
                         this.promotion=result[i]
                         console.log(result[i])
                     }
                 } 
-            })
             window.scrollTo({top:0})
         },
 

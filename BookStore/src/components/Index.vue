@@ -6,11 +6,11 @@
                 <ul>
                     <li class="cetago">图书分类</li>
                     <router-link tag="li" to="/">首页</router-link>
-                    <li>限时购</li>
-                    <li>新品</li>
-                    <li>热门图书</li>
-                    <li>编辑推荐</li>
-                    <li>特价图书</li>
+                    <li><a href="#promotion">限时购</a></li>
+                    <li><a href="#new">新品</a></li>
+                    <li><a href="#hot">热门图书</a></li>
+                    <li><a href="#rec">编辑推荐</a></li>
+                    <li><a href="#price">特价图书</a></li>
                 </ul>
             </div>
         </div>
@@ -18,13 +18,14 @@
         <div class="banner-container">
             <div class="classify">
             <ul>
-                    <li v-for="(item,index) in classify" :key='index'>
-                        <a href="#"> {{item}}
+                    <router-link tag="li" :to="'/subject/'+item" 
+                     v-for="(item,index) in classify" :key='index' >
+                        {{item}}
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-iconfontjiantou2"></use>
                             </svg>
-                        </a>
-                    </li> 
+                        
+                    </router-link> 
             </ul>
             </div>
             <div class="banner">
@@ -42,7 +43,7 @@
         <div class="promotion">
             <div class="container">
             <div class="promotion-nav">
-                <h2>限时抢购</h2>
+                <h2 id="promotion">限时抢购</h2>
                 <div class="count">
                     <span class="remain">剩余时间</span>：<span>{{restTime.d}}</span>天<span>{{restTime.h}}</span>时<span>{{restTime.m}}</span>分<span>{{restTime.s}}</span>秒
                 </div>
@@ -54,8 +55,8 @@
                                 <p class="pic"><img :src="item.Src" alt=""></p>
                                 <p class="title">{{item.Title}}</p>
                                 <p class="price">
-                                <span class="present-price">￥{{item.PresentPrice}}</span>
-                                <span class="cost-price">￥{{item.CostPrice}}</span>
+                                    <span class="cost-price">￥{{item.CostPrice}}</span>
+                                    <span class="present-price">￥{{item.PresentPrice}}</span>
                                 </p>
                             <!-- </a>     -->
                     </router-link>
@@ -64,9 +65,9 @@
             </div>
         </div>
         <!-- 新品图书 -->
-        <div class="new">
+        <div class="new" >
             <div class="new-nav">
-                <h2 class="left">新品图书</h2>
+                <h2 class="left" id="new">新品图书</h2>
                 <h2 class="right">新品推荐</h2>
             </div>
             <div class="content">
@@ -77,8 +78,8 @@
                                     <p class="pic"><img :src="item.Src" alt=""></p>
                                     <p class="title">{{item.Title}}</p>
                                     <p class="price">
-                                    <span class="present-price">{{item.PresentPrice}}</span>
-                                    <span class="cost-price">{{item.CostPrice}}</span>
+                                    <span class="cost-price">￥{{item.CostPrice}}</span>
+                                    <span class="present-price">￥{{item.PresentPrice}}</span>
                                     </p>  
                             </router-link>
                     </ul>
@@ -93,7 +94,7 @@
         <!-- 热门图书 -->
         <div class="hot">
             <div class="hot-nav">
-                <h2 class="left">热门图书</h2>
+                <h2 class="left" id="hot">热门图书</h2>
                 <h2 class="right">热销排行榜</h2>
             </div>   
             <div class="content">
@@ -104,60 +105,19 @@
                                     <p class="pic"><img :src="item.Src" alt=""></p>
                                     <p class="title">{{item.Title}}</p>
                                     <p class="price">
-                                        <span class="present-price">{{item.PresentPrice}}</span>
-                                        <span class="cost-price">{{item.CostPrice}}</span>
+                                        <span class="cost-price">￥{{item.CostPrice}}</span>
+                                        <span class="present-price">￥{{item.PresentPrice}}</span>
                                     </p> 
                              </router-link>
                     </ul>
                 </div>
                 <div class="rank">
-                <ul>
-                    <li v-for="(item,index) in hot_list" :key='index' 
-                            @mouseenter="enter(index)"
-                    >
-                        <div v-if="current!=index">
-                                <span>{{index+1}}.</span>
-                                {{item.title}}
-                            </div>  
-                            <div v-if='index==current' class="current">
-                                <span class="hover">{{index+1}}.</span>
-                                <img :src=item.src alt=""/>
-                                <div class="title">
-                                    <p>{{item.title}}</p>
-                                    <p class="price">{{item.price}}</p>
-                                </div>
-                            </div>  
-                    </li>
-                    
-                </ul>
-                </div>
-            </div>    
-        </div>
-        <!-- 编辑推荐 -->
-        <div class="hot">
-            <div class="hot-nav">
-                <h2 class="left">编辑推荐</h2>
-                <h2 class="right">排行榜</h2>
-            </div>
-            <div class="content">
-                <div class="hot-list">
                     <ul>
-                             <router-link tag="li" :to="'/detail/'+item.BookID" v-for="(item, index) in promotion" :key=index>
-                                <p class="pic"><img :src="item.Src" alt=""></p>
-                                <p class="title">{{item.Title}}</p>
-                                <p class="price">
-                                <span class="present-price">￥{{item.PresentPrice}}</span>
-                                <span class="cost-price">￥{{item.CostPrice}}</span>
-                                </p>
-                            </router-link>   
-                    </ul>
-                </div>
-                <div class="rank">
-                    <ul>
-                        <li v-for="(item,index) in hot_list" :key='index' 
-                                @mouseenter="enter(index)"
+                        <router-link tag="li" :to="'/rank/'+item.title" 
+                        v-for="(item,index) in hot_list" :key='index'       
                         >
-                            <div v-if="current!=index">
+                            <div  @mouseenter="enter(index)">
+                                <div v-if="current!=index">
                                     <span>{{index+1}}.</span>
                                     {{item.title}}
                                 </div>  
@@ -168,9 +128,52 @@
                                         <p>{{item.title}}</p>
                                         <p class="price">{{item.price}}</p>
                                     </div>
+                                </div>
+                            </div>      
+                        </router-link>
+                    </ul>
+                </div>
+            </div>    
+        </div>
+        <!-- 编辑推荐 -->
+        <div class="hot">
+            <div class="hot-nav">
+                <h2 class="left" id="rec">编辑推荐</h2>
+                <h2 class="right">排行榜</h2>
+            </div>
+            <div class="content">
+                <div class="hot-list">
+                    <ul>
+                             <router-link tag="li" :to="'/detail/'+item.BookID" v-for="(item, index) in promotion" :key=index>
+                                <p class="pic"><img :src="item.Src" alt=""></p>
+                                <p class="title">{{item.Title}}</p>
+                                <p class="price">
+                                    <span class="cost-price">￥{{item.CostPrice}}</span>
+                                    <span class="present-price">￥{{item.PresentPrice}}</span>
+                                </p>
+                            </router-link>   
+                    </ul>
+                </div>
+                <div class="rank">
+                    <ul>
+                        <router-link tag="li" :to="'/rank/'+item.title" 
+                        v-for="(item,index) in hot_list" :key='index'       
+                        >
+                            <div  @mouseenter="enter(index)">
+                                <div v-if="current!=index">
+                                    <span>{{index+1}}.</span>
+                                    {{item.title}}
                                 </div>  
-                        </li>
-                        
+                                <div v-if='index==current' class="current">
+                                    <span class="hover">{{index+1}}.</span>
+                                    <img :src=item.src alt=""/>
+                                    <div class="title">
+                                        <p>{{item.title}}</p>
+                                        <p class="price">{{item.price}}</p>
+                                    </div>
+                                </div>
+                            </div>      
+                        </router-link>
                     </ul>
                 </div>
             </div>    
@@ -178,43 +181,44 @@
         <!-- 特价图书 -->
         <div class="hot">
             <div class="hot-nav">
-                <h2 class="left">特价图书</h2>
+                <h2 class="left" id="price">特价图书</h2>
                 <h2 class="right">特价排行榜</h2>
             </div>
             <div class="content">
                 <div class="hot-list">
                     <ul>
-                             <router-link tag="li" :to="'/detail/'+item.BookID" 
+                            <router-link tag="li" :to="'/detail/'+item.BookID" 
                                  v-for="(item, index) in priceBook" :key=index>
                                     <p class="pic"><img :src="item.Src" alt=""></p>
                                     <p class="title">{{item.Title}}</p>
                                     <p class="price">
-                                        <span class="present-price">{{item.PresentPrice}}</span>
-                                        <span class="cost-price">{{item.CostPrice}}</span>
+                                        <span class="cost-price">￥{{item.CostPrice}}</span>
+                                        <span class="present-price">￥{{item.PresentPrice}}</span>
                                     </p> 
                             </router-link>
                     </ul>
                 </div>
                 <div class="rank">
-                <ul>
-                    <li v-for="(item,index) in hot_list" :key='index' 
-                            @mouseenter="enter(index)"
-                    >
-                        <div v-if="current!=index">
-                                <span>{{index+1}}.</span>
-                                {{item.title}}
-                            </div>  
-                            <div v-if='index==current' class="current">
-                                <span class="hover">{{index+1}}.</span>
-                                <img :src=item.src alt=""/>
-                                <div class="title">
-                                    <p>{{item.title}}</p>
-                                    <p class="price">{{item.price}}</p>
+                    <ul>
+                        <router-link tag="li" :to="'/rank/'+item.title" 
+                        v-for="(item,index) in hot_list" :key='index'       
+                        >
+                            <div  @mouseenter="enter(index)">
+                                <div v-if="current!=index">
+                                    <span>{{index+1}}.</span>
+                                    {{item.title}}
+                                </div>  
+                                <div v-if='index==current' class="current">
+                                    <span class="hover">{{index+1}}.</span>
+                                    <img :src=item.src alt=""/>
+                                    <div class="title">
+                                        <p>{{item.title}}</p>
+                                        <p class="price">{{item.price}}</p>
+                                    </div>
                                 </div>
-                            </div>  
-                    </li>
-                    
-                </ul>
+                            </div>      
+                        </router-link>
+                    </ul>
                 </div>
             </div>    
         </div>
@@ -227,7 +231,7 @@ export default {
     data () {
         return {
             banner:['../../static/img/banner1.jpg','../../static/img/banner2.png','../../static/img/banner3.jpg','../../static/img/banner4.jpg','../../static/img/banner5.jpg','../../static/img/banner6.jpg',],
-            classify:['世界名著',' 少儿图书','教育','生活时尚','艺术与摄影','漫画绘本' ,'科技','经济管理','古籍学术','学习与考试'],
+            classify:['世界名著','少儿图书','教育','生活时尚','艺术与摄影','漫画绘本' ,'科技','经济管理','古籍学术','学习与考试'],
             promotion:[],
             newBook:[],
             hotBook:[],
@@ -299,10 +303,8 @@ export default {
             },1000) 
         },
         enter(index){
-                // this.hot_show=true
                 this.hot_hidden=false
                 this.current=index
-                console.log('iiiiiiiiiiiiiiiiiiii')
         },
         // 监听滚动条函数
         // watchScroll () {
@@ -313,6 +315,8 @@ export default {
         //         this.navBarFixed = false
         //     }
         // },
+
+       
     }
 }
 </script>
@@ -357,6 +361,7 @@ export default {
                    position: relative;
                    margin-bottom: 6px;
                    padding-right: 30px;
+                   cursor: pointer;
                    .icon{
                         position: absolute;
                         right:0;
@@ -368,9 +373,7 @@ export default {
                   .icon{
                       color: #fff;
                    }
-                   a{
                         color: #fff;
-                   }
                }
             }
         }
@@ -399,7 +402,6 @@ export default {
     }    
     // 限时抢购
      .promotion{
-        // background: #dde0e4;
         margin-top: 30px;
         .container{
             width: 1200px;
@@ -455,11 +457,11 @@ export default {
                             height: 200px;
                         }
                         .price{
-                            .present-price{
+                            .cost-price{
                                 color: red;
                                 font-size: 20px;
                             }
-                            .cost-price{
+                            .present-price{
                                 text-decoration: line-through;
                             }
                         }
@@ -519,11 +521,11 @@ export default {
 
                             }
                             .price{
-                                .present-price{
+                                .cost-price{
                                     color: red;
                                     font-size: 20px;
                                 }
-                                .cost-price{
+                                .present-price{
                                     text-decoration: line-through;
                                 }
                             }
@@ -591,11 +593,11 @@ export default {
                                 height:200px;
                             }
                             .price{
-                                .present-price{
+                                .cost-price{
                                     color: red;
                                     font-size: 20px;
                                 }
-                                .cost-price{
+                                .present-price{
                                     text-decoration: line-through;
                                 }
                             }
