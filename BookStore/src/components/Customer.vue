@@ -1,8 +1,6 @@
-
-
 <template>
-    
-    <div class="wrap">
+  <div id="app">
+        <div class="wrap">
          <!-- 导航栏 -->
         <div class="nav">
             <div class="container">
@@ -20,86 +18,77 @@
                     <!-- <li class="help"><a href="#">帮助中心</a></li>
                     <li class="collect"><a href="#">收藏夹</a></li> -->
                     <router-link to="/my/me" tag="li" class="help">我的</router-link>
-                    <router-link to="/car" tag="li" class="car">购物车</router-link>
+                    <li class="car"><a href="#">购物车</a></li>
                     <router-link to="/index" tag="li" class="index">首页</router-link>
             </ul>
             </div>
         </div>
-            <!-- 标签、搜索框 -->
+            <!-- 标签、步骤条 -->
         <div class="logo">
             <div class="container">
                 <h1>ShuTian</h1>
-                <div class="search">
-                    <input type="text" v-model="bookName"/>
-                    <button @click="search">搜索</button>
-                </div>
-                <div class="on">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-broadcast" ></use>
-                    </svg>
-                </div>
             </div>
         </div>
+        <div class="container">
+           <!-- <textarea name="" id="" cols="100" rows="20">
+
+           </textarea> -->
+           <textarea name="textarea"  cols="100" rows="20" @focus="msg=0" @blur="msg=1">
+               
+           </textarea>
+            <div class="msg" v-if="msg">请留言</div>
+
+        </div>
+        <div class="send"><button>发送</button></div>
     </div>
+    <Footer></Footer>
+  </div>
 </template>
 <script>
-import bus from '@/components/home/bus.js'
+import Footer from '@/components/Footer'
+
 export default {
-
-
+    components:{
+        Footer
+    },
+    name: 'App',
     data(){
         return{
-            broadcast:['aaaaaaaa','bbbbbbbbb','ccccccccc'],
-            bookName:this.bookName,
-            searchList:[],
-            username_show:0,
-            rl_show:1,
+            username_show:0,  //用户名显示
+            rl_show:1,   //登录、注册显示
             username:'',
+            msg:1,
         }
-    },
+    },    
     mounted(){
-        this.show_username()   
+        this.show_username()
     },
     methods:{
-         // 搜索图书
-        search(){
-            if(this.bookName){
-                this.$axios.post( 'http://localhost:3000/bookList',{bookName:this.bookName},{}).then(
-                (res) => {
-                    this.searchList=res.data.searchList    
-                    setTimeout(() => {
-                    bus.$emit('search',{searchList:this.searchList,bookName:this.bookName})
-                    },100)
-                    this.$router.push({path:'/search'})
-                })
-            }    
-        
-        },
+       //  显示用户名
         show_username(){
             if(localStorage.getItem('User')){
                 var username= localStorage.getItem('User')
                 username=JSON.parse(username)
+                console.log('你那呢',username)
                 this.username=username[0]
                 this.username_show=1
                 this.rl_show=0
             }
         },
+        // 退出登录
         exit(){
                 localStorage.removeItem('User')
                 this.username_show=0
                 this.rl_show=1 
-        }
-    }    
+                // this.$router.push({path:'/login'})
+        },
+    }          
 }
 </script>
 
-<style lang='scss' scoped>
-    .router-link-exact-active{
-        color: rgb(0, 255, 0);
-        font-size: 20px;
-        font-weight: 800;
-    }
-     /* 导航栏 */
+
+<style <style lang="scss" scoped>
+    /* 导航栏 */
     .nav{
         background: rgb(41, 39, 39);
         height:50px;
@@ -113,8 +102,6 @@ export default {
                 position:absolute;
                 height: 100%;
                 overflow: hidden;
-                // left:0;
-                // top:0;
                 line-height: 50px;
                li{
                   float:left;
@@ -129,7 +116,7 @@ export default {
                 .line{
                     margin: 0 5px 0 0;
                 }
-                .username{
+                 .username{
                   color: #fff;
                   font-size: 16px;
                   .user{
@@ -145,7 +132,7 @@ export default {
                 position:absolute;
                 height:100%;
                 overflow: hidden;
-                right:60px;
+                right:30px;
                 line-height: 50px;
                 li{
                     float: right;
@@ -157,70 +144,48 @@ export default {
            }
         }
     }
-    // 标签、搜索
+    // 标签、步骤条 
     .logo{
+        margin: 30px 0;
         .container{
             overflow: hidden;
             width: 1200px;
             margin: 0  auto;
-            height:200px;
             h1{
-                float: left;
                 height: 100%;
-                line-height: 200px;
+                line-height: 150px;
                 color: rgb(130, 241, 25);
                 font-size: 50px;
                 font-style: italic;
-            }
-            .search{
-                    float: left;
-                    height: 100%;
-                    line-height: 200px;
-                    margin-left: 160px;
-                   input{
-                       height: 60px;
-                       width: 400px;
-                       margin: 0;
-                       border: 1px solid rgb(143, 137, 137);
-                   }
-                   button{
-                       vertical-align: middle;
-                       margin-left: -5px;
-                       height: 62px;
-                       margin-bottom: 1px;
-                       width: 100px;
-                       background: rgb(42, 211, 12);
-                       color:#fff;
-                       border:1px solid  rgb(143, 137, 137);
-                       font-size:26px;
-                       border-bottom: 0;
-                   }
-            }
-            .on{
-                   float: left;
-                //    background:yellow;
-                //    height:30px;
-                   line-height:2;
-                   position: relative;
-                   margin: 70px 0 0 80px;
-                   color: red;
-                   .icon{
-                       height: 60px;
-                       width:60px;
-                   }
-                   ul{
-                       display: inline-block;
-                        position: absolute;
-                        bottom:20px;
-                        margin-left: 60px;
-                        height: 25px;
-                        // overflow: hidden;
-                       li{
-                           line-height: 1.5;
-                       }
-                   }              
-            }
+                text-align: left;
+                border-bottom: 1px solid rgb(130, 241, 25);
+            }    
         }
     }
+
+    .container{
+        position: relative;
+    }
+    .msg{
+        font-size: 24px;
+        color: rgb(190, 178, 178);
+        position: absolute;
+        top:30px;
+        left:500px;
+    }
+    .send{
+            margin-bottom: 100px;
+            width: 1200px;
+            margin: 10px auto;
+           button{
+               padding: 10px 20px;
+               background: rgb(99, 228, 13);
+               color: #fff;
+               font-size: 22px;
+               border: 0;
+               border-radius: 15px;
+           }
+       }
+
 </style>
 

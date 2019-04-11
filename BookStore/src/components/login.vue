@@ -11,8 +11,8 @@
                     <li class="register"><router-link to="/register">注册</router-link></li>
                 </ul>
                  <ul class="nav-right">
-                    <li class="help"><a href="#">帮助中心</a></li>
-                    <li class="collect"><a href="#">收藏夹</a></li>
+                    <!-- <li class="help"><a href="#">帮助中心</a></li>
+                    <li class="collect"><a href="#">收藏夹</a></li> -->
                     <router-link to="/my/me" tag="li" class="help">我的</router-link>
                     <li class="car"><a href="#">购物车</a></li>
                     <router-link to="/index" tag="li" class="index">首页</router-link>

@@ -1,13 +1,16 @@
 <template>
   <div class="hello">
-  <Header :class="navBarFixed == true ? 'navBarWrap' :''"></Header>
+  <Header></Header>
     <!-- 联系客服 -->
-    <div class="customer">
-        <svg class="icon" aria-hidden="true" >
-            <use xlink:href="#icon-lianxikefu"></use>
-        </svg>
-        <p>在线客服</p>
-    </div>
+    <router-link to="/customer">
+        <div class="customer">
+            <svg class="icon" aria-hidden="true" >
+                <use xlink:href="#icon-lianxikefu"></use>
+            </svg>
+            <p>在线客服</p>
+        </div>
+    </router-link>
+       
     <router-view></router-view>
     <Footer></Footer>
   </div>

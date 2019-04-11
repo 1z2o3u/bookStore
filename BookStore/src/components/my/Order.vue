@@ -1,7 +1,7 @@
 <template>
         <div class="right">
                      <!--我的足迹 -->
-                    <div class="track">
+            <div class="track">
                         <div class='track-wrap'>
                             <h3>我的订单</h3>
                         </div>
@@ -18,12 +18,35 @@
                                     <p class="state">待付款</p>
                                     <div class="total">合计：
                                         <span class="total-num">￥{{(item.CostPrice*item.Count).toFixed(2)}}</span>
-                                        <span class="pay">付款</span>
+                                        <span class="pay" @click="pay((item.CostPrice*item.Count).toFixed(2))">付款</span>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
+            <div class="confirm-pay" v-if="confirm_show">
+                <div class="cnf-pay">
+                    <p class="cnf-title">确认支付</p>
+                    <p class="icon-off">
+                        <svg class="icon  off" aria-hidden="true" @click="off">
+                            <use xlink:href="#icon-shanchuguanbicha"></use>
+                        </svg>
+                    </p>
+                </div>
+                <div class="sum">
+                    ￥{{this.total}}
+                </div>
+                <div class="pay-type">
+                    <p>付款方式:</p>
+                    <p>农业银行卡
+                    <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-iconfontjiantou2"></use>
+                    </svg>
+                    </p>
+                </div>
+                <div class="pay-num"><p>卡号:</p><p>**** **** **** 1679</p></div>
+                <div class="password"><a href="#">输入密码</a></div>
+            </div>
         </div>
 </template>
 <script>
@@ -31,7 +54,9 @@ export default {
         data(){ 
             return{
                 orderList:[],
-                no_data:0 
+                no_data:0 ,
+                confirm_show:0,
+                total:0
             }
         },
         mounted(){
@@ -79,7 +104,13 @@ export default {
                     }
                 
             },
-           
+            pay(toatl){
+               this.confirm_show=1 
+               this.total=toatl
+            },
+            off(){
+               this.confirm_show=0
+            }
         }
 
        
@@ -180,7 +211,44 @@ export default {
                     }
                 }
             }
-           
+            // 确认支付
+            .confirm-pay{
+                background: rgb(238, 229, 229);
+                width: 800px;
+                height: 500px;
+                position:fixed;
+                padding-top: 50px;
+                top:100px;
+                left: 450px;
+                .off{
+                    font-size: 40px;
+                    color: rgb(60, 231, 8);
+                }
+                div{
+                    display: flex;
+                    line-height: 3;
+                    align-items: center;
+                    font-size: 20px;
+                    justify-content: space-around;
+                }
+                .cnf-title{
+                    text-align:right;
+                    font-size: 28px;
+                    flex: 2;
+                    padding-right: 100px;
+                }
+                .icon-off{
+                    text-align: center;
+                    flex: 1;
+                }
+                .sum{
+                    font-size: 50px;
+                    font-weight: 800;
+                }
+                .password a{
+                    color: rgb(20, 98, 223);
+                }
+            }
         }
 </style>
 

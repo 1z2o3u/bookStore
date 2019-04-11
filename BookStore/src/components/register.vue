@@ -11,8 +11,8 @@
                 <li class="register"><router-link to="/register">注册</router-link></li>
             </ul>
             <ul class="nav-right">
-                    <li class="help"><a href="#">帮助中心</a></li>
-                    <li class="collect"><a href="#">收藏夹</a></li>
+                    <!-- <li class="help"><a href="#">帮助中心</a></li>
+                    <li class="collect"><a href="#">收藏夹</a></li> -->
                     <router-link to="/my/me" tag="li" class="help">我的</router-link>
                     <li class="car"><a href="#">购物车</a></li>
                     <router-link to="/index" tag="li" class="index">首页</router-link>
@@ -173,7 +173,6 @@ export default {
                         this.err.pwd=1;
                         this.msg.pwd='两次密码不一致!'
                     }
-
                 }
             }else if(param=='re'){
                 if(this.rePwd==''){
@@ -225,7 +224,6 @@ export default {
                             center: true,
                             type:'success'
                         });
-                        console.log(res.data.code,'mmmmmmmmmmmmmmm ')
                     }else{
                         this.active=1;
                         this.$message({
@@ -245,10 +243,6 @@ export default {
                         console.log('网络错误：',err)
                 })      
             }else{
-                // this.phone=''
-                // this.nickName=''
-                // this.pwd=''
-                // this.rePwd=''
                 this.$message({
                 message: '格式不正确!',
                 center: true,

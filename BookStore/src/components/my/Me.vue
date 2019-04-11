@@ -246,6 +246,7 @@ export default {
                                 padding: 30px 10px 0px;
                                 img{
                                     width: 80%;
+                                    height: 160px;
                                 }
                                 .price{
                                     .present-price{
@@ -265,7 +266,8 @@ export default {
                                 }
                                 .title{
                                     white-space: nowrap;
-                                    overflow:inherit;
+                                    overflow:hidden;
+                                    text-overflow: ellipsis;
                                     line-height: 2.5;
                                 }
                             }

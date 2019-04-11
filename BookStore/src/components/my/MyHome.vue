@@ -15,8 +15,8 @@
                         </li>
                     </ul>
                     <ul class="nav-right">
-                            <li class="help"><a href="#">帮助中心</a></li>
-                            <li class="collect"><a href="#">收藏夹</a></li>
+                            <!-- <li class="help"><a href="#">帮助中心</a></li>
+                            <li class="collect"><a href="#">收藏夹</a></li> -->
                             <router-link to="/my/me" tag="li" class="help">我的</router-link>
                             <router-link to="/car" tag="li" class="car">购物车</router-link>
                             <router-link to="/index" tag="li" class="index">首页</router-link>
@@ -47,12 +47,12 @@
                             </router-link>
                            
                         </dt>
-                        <!-- <dt>
+                        <dt>
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-rmb"></use>
                             </svg>
                             我的资产
-                        </dt> -->
+                        </dt>
                         <dd>
                             <router-link to='/my/ticket'>卡券</router-link>
                         </dd>

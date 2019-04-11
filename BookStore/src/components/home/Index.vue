@@ -305,7 +305,6 @@ export default {
                 // this.hot_show=true
                 this.hot_hidden=false
                 this.current=index
-                console.log('iiiiiiiiiiiiiiiiiiii')
         },
 
         // 监听滚动条函数

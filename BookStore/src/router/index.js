@@ -15,12 +15,14 @@ import Address from '@/components/my/Address'
 import Order from '@/components/my/Order'
 import Detail from '@/components/Detail'
 import Rank from '@/components/Rank'
+import Confirm from '@/components/Confirm'
 import Hello from '@/components/HelloWorld'
 import Favorites from '@/components/Favorites'
 import Index from '@/components/Index'
 import Search from '@/components/home/Search'
 import Car from '@/components/Car'
 import Subject from '@/components/classify/Subject'
+import Customer from '@/components/Customer'
 
 
 
@@ -65,6 +67,12 @@ export default new Router({
       name: 'Login',
       component: Login
     },
+    {
+      path: '/customer',
+      name: 'Customer',
+      component:Customer
+    },
+    
     {
       path: '/my',
       name: 'My',
@@ -126,6 +134,13 @@ export default new Router({
       path: '/rank/:id',
       name: 'Rank',
       component: Rank
+    },
+
+    // 确认订单
+    {
+      path: '/confirm',
+      name: 'Confirm',
+      component:Confirm
     },
 
     {

@@ -38,8 +38,8 @@ app.post('/register',function(req,res){
 				idf:body.idf
 			}
 			connection.connect(); 
-			var  addSql = `INSERT INTO UserInfo(pwd,nickname,phone,idf,rePwd) VALUES('${ params.pwd}',
-			"${ params.nickName}","${ params.phone}","${ params.idf}","${ params.rePwd}")`;
+			var  addSql = `INSERT INTO UserInfo(pwd,nickname,phone) VALUES('${ params.pwd}',
+			"${ params.nickName}","${ params.phone}")`;
 			connection.query(addSql,function (err, result) {
 			       if(err){
 			        	res.send({code:0,msg:'网络异常，请稍后重试！'})
@@ -540,6 +540,164 @@ app.post('/orderList',function(req,res){
 		client.end();
 		})
 })
+
+// 获取昵称
+app.post('/getNick',function(req,res){
+	var body=''
+	req.on('data',function(chunk){
+		body+=chunk;
+	});
+	req.on('end',function(){
+		var client=mysql.createConnection({
+			host:'localhost',
+			user:'root',
+			password:'',
+			database:'bookstore'
+		});
+		body=JSON.parse(body);
+		var params={
+                username:body.user,
+			}
+		var userinfo=''
+		client.connect();
+		var sql=`select * from userinfo where phone=${params.username}`
+		client.query(sql,function(err,result){
+			if(err){
+				res.send({code:0,msg:'网络异常，请稍后重试！'})
+			}else{
+				if(result.length>0){
+					res.send({code:1,msg:'加载成功！',userinfo:result})
+				}else{
+					res.send({code:2,msg:'加载失败，请稍后重试！'})
+				}
+			}
+		})
+		client.end();
+		})
+})
+
+// 修改用户信息
+
+app.post('/updateUser',function(req,res){
+	var body=''
+	req.on('data',function(chunk){
+		body=chunk;
+	})
+	req.on('end',function(){
+		var client=mysql.createConnection({
+			host:'localhost',
+			user:'root',
+			password:'',
+			database:'bookstore'
+		});
+		body=JSON.parse(body);
+		body=body.data
+		var params={
+			nickName:body.nickName,
+			rePwd:body.rePwd,
+			phone:body.phone,
+		}
+		client.connect();
+
+		if(params.rePwd==''){
+			var  addSql = `UPDATE userinfo SET nickName='${params.nickName}' where phone='${params.phone}'`;
+			client.query(addSql,function (err, result) {
+			        if(err){
+			        	res.send({code:0,msg:'网络异常，请稍后重试！'})
+			         }else{
+			         	res.send({code:1,msg:'修改成功！'})
+			         }            
+			}); 	
+		}else{
+			var  addSql = `UPDATE  userinfo SET nickName='${params.nickName}'
+			,pwd='${params.rePwd}' where phone='${params.phone}'`;
+			client.query(addSql,function (err, result) {
+			        if(err){
+			        	res.send({code:0,msg:'网络异常，请稍后重试！'})
+			        	console.log('sss',err)
+			         }else{
+			         	res.send({code:1,msg:'修改成功！'})
+			         	
+			         }            
+			}); 
+		}
+		
+			client.end();
+	})
+
+})
+
+
+// 添加地址
+
+app.post('/addAddress',function(req,res){
+	var body=''
+	req.on('data',function(chunk){
+		body=chunk;
+	})
+	req.on('end',function(){
+		var client=mysql.createConnection({
+			host:'localhost',
+			user:'root',
+			password:'',
+			database:'bookstore'
+		});
+		body=JSON.parse(body);
+		var params={
+			address:body.data.address,
+			phone:body.data.phone
+		}
+		client.connect();
+		var  addSql = `update userinfo set address='${params.address}' 
+		 where phone='${params.phone}' `
+			client.query(addSql,function (err, result) {
+			        if(err){
+			        	res.send({code:0,msg:'网络异常，请稍后重试！'})
+
+			         }else{
+			         	res.send({code:1,msg:'添加地址成功！'})
+			         }            
+			}); 
+			client.end();
+	})
+
+})
+
+// 删除地址
+
+app.post('/delAddress',function(req,res){
+	var body=''
+	req.on('data',function(chunk){
+		body=chunk;
+	})
+	req.on('end',function(){
+		var client=mysql.createConnection({
+			host:'localhost',
+			user:'root',
+			password:'',
+			database:'bookstore'
+		});
+		body=JSON.parse(body);
+		var params={
+			phone:body.phone
+		}
+		client.connect();
+			var  addSql = `UPDATE  userinfo SET address='' where phone='${params.phone}'`;
+			client.query(addSql,function (err, result) {
+			        if(err){
+			        	res.send({code:0,msg:'网络异常，请稍后重试！'})
+			         }else{
+			         	res.send({code:1,msg:'删除成功！'})
+			         	
+			         }            
+			}); 
+		client.end();
+	})
+
+})
+
+
+
 
 
 

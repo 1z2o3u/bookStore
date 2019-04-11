@@ -13,8 +13,8 @@
                 </li>
             </ul>
             <ul class="nav-right">
-                    <li class="help"><a href="#">帮助中心</a></li>
-                    <li class="collect"><a href="#">收藏夹</a></li>
+                    <!-- <li class="help"><a href="#">帮助中心</a></li>
+                    <li class="collect"><a href="#">收藏夹</a></li> -->
                     <router-link to="/my/me" tag="li" class="help">我的</router-link>
                     <router-link to="/car" tag="li" class="car">购物车</router-link>
                     <router-link to="/index" tag="li" class="index">首页</router-link>
@@ -231,7 +231,6 @@ export default {
                     this.checkedAll=0
                 },
                 err => {
-
                 }
             )
         },
@@ -241,17 +240,38 @@ export default {
                 id:id,
                 operate:'del',
             }
-            this.$axios.post('http://localhost:3000/operateCar',{data},{}).then(
-                res => {
-                    var code=res.data.cod
-                    this.getCar()
-                    this.checkedAll=0
-
-                },
-                err => {
-
-                }
-            )
+            this.$confirm('确定删除吗？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                    center: true
+                    }).then(() => {
+                    this.$axios.post('http://localhost:3000/operateCar',{data},{}).then(
+                        res => {
+                            var code=res.data.cod
+                            this.getCar()
+                            this.checkedAll=0
+                            this.$message({
+                                type: 'success',
+                                center:true,
+                                message: '删除成功!'
+                            });
+                        },
+                        err => {
+                            this.$message({
+                                message:'网络异常，请稍后重试!',
+                                center: true,
+                                type:'error'
+                            });
+                        }
+                    )
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            center:true,
+                            message: '已取消删除'
+                        });
+                }); 
         },
 
         // 结算
@@ -260,8 +280,7 @@ export default {
             this.carList.map( (item) => {
                 if(item.isSelect){
                     this.$set(item,'state',0)
-                    this.setData.push(item)
-                   
+                    this.setData.push(item)  
                 }
             })
             var data=this.setData
@@ -282,7 +301,7 @@ export default {
                             center: true,
                             type:'success'
                         });
-                        this.$router.push({path:'/my/order'}) 
+                        this.$router.push({name:'Confirm',params:{orderInfo:data,total:this.total}}) 
                     }else{
                         this.$message({
                             message:msg,
@@ -323,7 +342,6 @@ export default {
         #app{
             overflow: hidden;
         }
-
          .nav{
             background: rgb(41, 39, 39);
             height:50px;
@@ -397,7 +415,6 @@ export default {
             }   
         }
     }
-
     .container{
         margin-top: 30px;
         width: 1200px;
